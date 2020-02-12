@@ -11,6 +11,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from django.db.models import Q
+from main.models import Institute
 
 
 class DialogListView(LoginRequiredMixin, generic.ListView):
@@ -44,4 +45,13 @@ class DialogListView(LoginRequiredMixin, generic.ListView):
             settings.CHAT_WS_SERVER_HOST,
             settings.CHAT_WS_SERVER_PORT,
         )
+
+        userinst = Institute.objects.filter(
+            pk=self.request.session.get('current_institute_pk')
+        ).first()
+        maininst = Institute.objects.filter(
+            iid=settings.MAIN_INSTITUTE
+        ).first()
+        context['userinst'] = userinst
+        context['maininst'] = maininst
         return context
