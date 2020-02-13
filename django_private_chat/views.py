@@ -52,6 +52,14 @@ class DialogListView(LoginRequiredMixin, generic.ListView):
         maininst = Institute.objects.filter(
             iid=settings.MAIN_INSTITUTE
         ).first()
-        context['userinst_staff'] = userinst.staff.all()
-        context['maininst_staff'] = maininst.staff.all()
+        if userinst:
+            userinst_staff = userinst.staff.all()
+        else:
+            userinst_staff = ''
+        if maininst:
+            maininst_staff = maininst.staff.all()
+        else:
+            maininst_staff = ''
+        context['userinst_staff'] = userinst_staff
+        context['maininst_staff'] = maininst_staff
         return context
