@@ -44,7 +44,6 @@ class DialogListView(LoginRequiredMixin, generic.ListView):
         ws_server_path_str = '{}://{}:{}/'
         if isinstance(settings.CHAT_WS_SERVER_PORT, str):
             ws_server_path_str = '{}://{}/{}/'
-        ws_server_path_str = '{}://{}:{}/'
         context['ws_server_path'] = ws_server_path_str.format(
             settings.CHAT_WS_SERVER_PROTOCOL,
             settings.CHAT_WS_SERVER_HOST,
