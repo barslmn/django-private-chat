@@ -51,7 +51,7 @@ class DialogListView(LoginRequiredMixin, generic.ListView):
             pk=self.request.session.get('current_institute_pk')
         ).first()
         maininst = Institute.objects.filter(
-            iid=settings.MAIN_INSTITUTE
+            slug=settings.MAIN_INSTITUTE
         ).first()
         if userinst:
             userinst_staff = userinst.staff.all()
